@@ -81,13 +81,14 @@ public class LeaderboardAlgorithms {
            if (list.get(mid).getUsername().compareTo(username) < 0) {
               low = mid + 1;
            }
-           else if (list.get(mid).getUsername().compareTo(username) < 0) {
+           else if (list.get(mid).getUsername().compareTo(username) > 0) {
               high = mid - 1;
            }
            else {
               return mid;
            }
         }
+		return -1;
     }
 }
 
