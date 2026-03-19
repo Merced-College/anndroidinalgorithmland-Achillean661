@@ -24,6 +24,22 @@ public class LeaderboardAlgorithms {
      */
     public static void sortByScoreDescending(ArrayList<ScoreEntry> list) {
         // TODO
+    	
+    	for (int i = 1; i < list.size(); i++) {
+    		int j = 1;
+    		
+    		while (j > 0 && list.get(j).getScore() < list.get(j-1).getScore()) {
+    			
+    			ScoreEntry temp = list.get(j);
+    			
+    			list.set(j,  list.get(j-1));
+    			
+    			list.set(j, temp);
+    			
+    			j--;
+    		} 
+    	}
+    	
     }
 
     /**
@@ -33,7 +49,20 @@ public class LeaderboardAlgorithms {
      * - Sort IN PLACE (modify the given list)
      */
     public static void sortByUsernameAscending(ArrayList<ScoreEntry> list) {
-        // TODO
+    	for (int i = 1; i < list.size(); i++) {
+    		int j = 1;
+    		
+    		while (j > 0 && list.get(j).getUsername().compareTo(list.get(j-1).getUsername()) < 0) {
+    			
+    			ScoreEntry temp = list.get(j);
+    			
+    			list.set(j,  list.get(j-1));
+    			
+    			list.set(j, temp);
+    			
+    			j--;
+    		} 
+    	}
     }
 
     /**
@@ -44,7 +73,21 @@ public class LeaderboardAlgorithms {
      * @return index of the matching entry, or -1 if not found
      */
     public static int binarySearchByUsername(ArrayList<ScoreEntry> list, String username) {
-        // TODO
-        return -1;
+    	int low = 0;
+        int high = list.size() - 1;
+     
+        while (high >= low) {
+           int mid = (high + low) / 2;
+           if (list.get(mid).getUsername().compareTo(username) < 0) {
+              low = mid + 1;
+           }
+           else if (list.get(mid).getUsername().compareTo(username) < 0) {
+              high = mid - 1;
+           }
+           else {
+              return mid;
+           }
+        }
     }
 }
+
